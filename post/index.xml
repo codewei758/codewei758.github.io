@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on 我是CodeV</title>
-    <link>http://codewei758.github.io/post/</link>
+    <link>https://codewei758.github.io/post/</link>
     <description>Recent content in Posts on 我是CodeV</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 08 Jul 2021 17:14:53 +0800</lastBuildDate><atom:link href="http://codewei758.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 08 Jul 2021 17:14:53 +0800</lastBuildDate><atom:link href="https://codewei758.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Redis安装&amp;部署&amp;远程连接（Linux）</title>
-      <link>http://codewei758.github.io/post/blog2/</link>
+      <link>https://codewei758.github.io/post/blog2/</link>
       <pubDate>Thu, 08 Jul 2021 17:14:53 +0800</pubDate>
       
-      <guid>http://codewei758.github.io/post/blog2/</guid>
+      <guid>https://codewei758.github.io/post/blog2/</guid>
       <description>准备Redis安装包，并解压  进入redis官方网站下载地址，选择自己合适的版本,并放在root目录下 在 /usr/local/ 下创建 redis 文件夹并进入  cd /usr/local/ mkdir redis cd redis  将redis安装包解压到 /usr/local/redis 中  tar -zxvf /root/redis-5.0.8.tar.gz -C ./  解压完之后，/usr/local/redis目录中会出现一个redis-5.0.8目录   编译并安装 cdredis-5.0.8/ make &amp;amp;&amp;amp; make install PS: 如果中途报错，可以去检查一下gcc编译器是否安装，rpm -q gcc查看，如果编译出错，请使用make clean清除临时文件。之后，找到出错的原因，解决问题后再来重新安装
  将Redis安装为系统服务并后台启动  进入utils目录，并执行如下命令  cd utils/ ./install_server.sh PS: 配置默认就行
  查看redis服务的启动情况  systemctl status redis_6379.service  启动自带的redis-cli客户端，测试通过    设置远程链接  编辑redis配置文件  vim /etc/redis/6379.conf 在 69 行的位置将 bind 127.</description>
@@ -20,10 +20,10 @@
     
     <item>
       <title>MySql Linux安装与部署</title>
-      <link>http://codewei758.github.io/post/blog1/</link>
+      <link>https://codewei758.github.io/post/blog1/</link>
       <pubDate>Thu, 08 Jul 2021 16:31:43 +0800</pubDate>
       
-      <guid>http://codewei758.github.io/post/blog1/</guid>
+      <guid>https://codewei758.github.io/post/blog1/</guid>
       <description>MySql Linux安装与部署  首先准备安装包   [MySql下载地址]（https://dev.mysql.com/downloads/mysql/）
   选择Linux-Generic版本，按照自己的操作系统选择32位或64位
   因为我是 CentOS 7 64位 选择 mysql-5.7.32-linux-glibc2.12-x86_64.tar.gz
