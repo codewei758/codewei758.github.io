@@ -1,93 +1,81 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
-<head>
-  <link href="https://gmpg.org/xfn/11" rel="profile">
-  <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  <meta name="generator" content="Hugo 0.85.0" />
-
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>我是CodeV</title>
-  <meta name="description" content="" />
-
-  
-  <link type="text/css" rel="stylesheet" href="http://codewei758.github.io/css/print.css" media="print">
-  <link type="text/css" rel="stylesheet" href="http://codewei758.github.io/css/poole.css">
-  <link type="text/css" rel="stylesheet" href="http://codewei758.github.io/css/syntax.css">
-  <link type="text/css" rel="stylesheet" href="http://codewei758.github.io/css/hyde.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
-
-
-  
-  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
-  <link rel="shortcut icon" href="/favicon.png">
-
-  
-  <link href="http://codewei758.github.io/index.xml" rel="alternate" type="application/rss+xml" title="我是CodeV" />
-  
-</head>
-
-  <body class=" ">
-  <aside class="sidebar">
-  <div class="container sidebar-sticky">
-    <div class="sidebar-about">
-      <a href="http://codewei758.github.io/"><h1>我是CodeV</h1></a>
-      <p class="lead">
-      An elegant open source and mobile first theme for <a href="http://hugo.spf13.com">hugo</a> made by <a href="http://twitter.com/mdo">@mdo</a>. Originally made for Jekyll.
-      </p>
-    </div>
-
-    <nav>
-      <ul class="sidebar-nav">
-        <li><a href="http://codewei758.github.io/">Home</a> </li>
-        
-      </ul>
-    </nav>
-
-    <p>&copy; 2021. All rights reserved. </p>
-  </div>
-</aside>
-
-    <main class="content container">
-    <div class="posts">
-<article class="post">
-  <h1 class="post-title">
-    <a href="http://codewei758.github.io/post/blog2/">Redis安装&amp;部署&amp;远程连接（Linux）</a>
-  </h1>
-  <time datetime="2021-07-08T17:14:53&#43;0800" class="post-date">Thu, Jul 8, 2021</time>
-  准备Redis安装包，并解压  进入redis官方网站下载地址，选择自己合适的版本,并放在root目录下 在 /usr/local/ 下创建 redis 文件夹并进入  cd /usr/local/ mkdir redis cd redis  将redis安装包解压到 /usr/local/redis 中  tar -zxvf /root/redis-5.0.8.tar.gz -C ./  解压完之后，/usr/local/redis目录中会出现一个redis-5.0.8目录   编译并安装 cdredis-5.0.8/ make &amp;&amp; make install PS: 如果中途报错，可以去检查一下gcc编译器是否安装，rpm -q gcc查看，如果编译出错，请使用make clean清除临时文件。之后，找到出错的原因，解决问题后再来重新安装
- 将Redis安装为系统服务并后台启动  进入utils目录，并执行如下命令  cd utils/ ./install_server.sh PS: 配置默认就行
- 查看redis服务的启动情况  systemctl status redis_6379.service  启动自带的redis-cli客户端，测试通过    设置远程链接  编辑redis配置文件  vim /etc/redis/6379.conf 在 69 行的位置将 bind 127.
-  
-  <div class="read-more-link">
-    <a href="/post/blog2/">Read More…</a>
-  </div>
-  
-</article><article class="post">
-  <h1 class="post-title">
-    <a href="http://codewei758.github.io/post/blog1/">MySql Linux安装与部署</a>
-  </h1>
-  <time datetime="2021-07-08T16:31:43&#43;0800" class="post-date">Thu, Jul 8, 2021</time>
-  MySql Linux安装与部署  首先准备安装包   [MySql下载地址]（https://dev.mysql.com/downloads/mysql/）
-  选择Linux-Generic版本，按照自己的操作系统选择32位或64位
-  因为我是 CentOS 7 64位 选择 mysql-5.7.32-linux-glibc2.12-x86_64.tar.gz
-   卸载系统⾃带的MARIADB   查询已安装的 Maiadb 安装包
- rpm -qa|grep mariadb
-   将所有 mariadb 开头的文件全部卸载
-yum -y remove mariadb-server-5.5.56-2.el7.x86_64 yum -y remove mariadb-5.5.56-2.el7.x86_64 yum -y remove mariadb-devel-5.5.56-2.el7.x86_64 yum -y remove mariadb-libs-5.5.56-2.el7.x86_64  ps:嫌麻烦的有批量卸载的命令自己去网上查一下   解压MySql安装包   将准备好的MySql安装包解压到 /usr/local/ 目录，重命名为 mysql
-tar -zxvf /root/mysql-5.7.32-linux-glibc2.12-x86_64.tar.gz -C /usr/local/ mv mysql-5.
-  
-  <div class="read-more-link">
-    <a href="/post/blog1/">Read More…</a>
-  </div>
-  
-</article>
-</div>
-    </main>
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <title>我是CodeV</title>
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.85.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="John Doe" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="http://codewei758.github.io/css/main.min.88e7083eff65effb7485b6e6f38d10afbec25093a6fac42d734ce9024d3defbd.css" />
 
     
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="我是CodeV"/>
+<meta name="twitter:description" content=""/>
+
+    <meta property="og:title" content="我是CodeV" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="http://codewei758.github.io/" />
+
+
+
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="http://codewei758.github.io/"><img class="app-header-avatar" src="/avatar.jpg" alt="John Doe" /></a>
+      <h1>我是CodeV</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vehicula turpis sit amet elit pretium.</p>
+    </header>
+    <main class="app-container">
       
+  <article>
+    <h1>我是CodeV</h1>
+    <ul class="posts-list">
+      
+        <li class="posts-list-item">
+          <a class="posts-list-item-title" href="http://codewei758.github.io/post/blog2/">Redis安装&amp;部署&amp;远程连接（Linux）</a>
+          <span class="posts-list-item-description">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+            Jul 8, 2021
+            -
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <title>clock</title>
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+            1 min read
+          </span>
+        </li>
+      
+        <li class="posts-list-item">
+          <a class="posts-list-item-title" href="http://codewei758.github.io/post/blog1/">MySql Linux安装与部署</a>
+          <span class="posts-list-item-description">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+            Jul 8, 2021
+            -
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <title>clock</title>
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+            2 min read
+          </span>
+        </li>
+      
+    </ul>
     
+
+
+
+  </article>
+
+    </main>
   </body>
 </html>
