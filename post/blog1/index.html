@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>
+MySql Linux安装与部署
+</title>
+
+  
+  
+  <meta name="author" content="CodeV" />
+  <meta name="description" content="MySql Linux安装与部署  首先准备安装包   [MySql下载地址]（https://dev.mysql.com/downloads/mysql/）
+  选择Linux-Generic版本，按照自己的操作系统选择32位或64位
+  因为我是 CentOS 7 64位 选择 mysql-5.7.32-linux-glibc2.12-x86_64.tar.gz
+   卸载系统⾃带的MARIADB   查询已安装的 Maiadb 安装包
+ rpm -qa|grep mariadb
+   将所有 mariadb 开头的文件全部卸载
+yum -y remove mariadb-server-5.5.56-2.el7.x86_64 yum -y remove mariadb-5.5.56-2.el7.x86_64 yum -y remove mariadb-devel-5.5.56-2.el7.x86_64 yum -y remove mariadb-libs-5.5.56-2.el7.x86_64  ps:嫌麻烦的有批量卸载的命令自己去网上查一下   解压MySql安装包   将准备好的MySql安装包解压到 /usr/local/ 目录，重命名为 mysql
+tar -zxvf /root/mysql-5.7.32-linux-glibc2.12-x86_64.tar.gz -C /usr/local/ mv mysql-5." />
+
+
+
+
+
+<meta name="generator" content="Hugo 0.85.0" />
+
+
+<link rel="canonical" href="http://codewei758.github.io/post/blog1/" />
+<link rel="alternative" href="/index.xml" title="我是CodeV" type="application/atom+xml" />
+
+<link href="/css/semantic.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="/css/site.css" />
+
+
+</head>
+
+<body>
+  <div class="flip-container">
+    <div class="flipper">
+      <section class="front">
+        
+<nav class="ui top secondary menu">
+  <div class="item">
+    <i class="inverted big link bullseye icon dream-flip-toggle" title="Flip it!"></i>
+  </div>
+  <div class="item">
+    <a href="/">
+      <i class="inverted big link home icon" title="Home"></i>
+    </a>
+  </div>
+</nav>
+ 
+<div class="ui centered grid">
+  <div class="fifteen wide mobile fifteen wide tablet eleven wide computer column post-list post-single-main">
+
+    <section class="ui secondary top attached black segment">
+      <a class="ui black right corner label" href="javascript:void(0)" onclick="savePostAsImg()">
+        <i class="save icon"></i>
+      </a>
+      <header>
+        <h1 class="ui header">
+          MySql Linux安装与部署
+          <div class="sub header">@ CodeV · Jul 8, 2021 · 2 min read · Update at Jul 8, 2021</div>
+        </h1>
+      </header>
+      <article class="post-content" style="margin-top: 2rem; font-size: 1.4rem;"><h1 id="mysql-linux安装与部署">MySql Linux安装与部署</h1>
+<hr>
+<h2 id="首先准备安装包">首先准备安装包</h2>
+<ul>
+<li>
+<p>[MySql下载地址]（https://dev.mysql.com/downloads/mysql/）</p>
+</li>
+<li>
+<p>选择<strong>Linux-Generic</strong>版本，按照自己的操作系统选择32位或64位</p>
+</li>
+<li>
+<p>因为我是 CentOS 7 64位 选择 <strong>mysql-5.7.32-linux-glibc2.12-x86_64.tar.gz</strong></p>
+</li>
+</ul>
+<hr>
+<h2 id="卸载系统带的mariadb">卸载系统⾃带的MARIADB</h2>
+<ul>
+<li>
+<p>查询已安装的 <strong>Maiadb</strong> 安装包</p>
+<blockquote>
+<p>rpm -qa|grep mariadb</p>
+</blockquote>
+</li>
+<li>
+<p>将所有 <strong>mariadb</strong> 开头的文件全部卸载</p>
+<pre><code>yum -y remove mariadb-server-5.5.56-2.el7.x86_64
+yum -y remove mariadb-5.5.56-2.el7.x86_64
+yum -y remove mariadb-devel-5.5.56-2.el7.x86_64
+yum -y remove mariadb-libs-5.5.56-2.el7.x86_64
+</code></pre><pre><code> ps:嫌麻烦的有批量卸载的命令自己去网上查一下
+
+</code></pre></li>
+</ul>
+<h2 id="解压mysql安装包">解压MySql安装包</h2>
+<ul>
+<li>
+<p>将准备好的MySql安装包解压到 <strong>/usr/local/</strong> 目录，重命名为 <strong>mysql</strong></p>
+<pre><code>tar -zxvf /root/mysql-5.7.32-linux-glibc2.12-x86_64.tar.gz -C /usr/local/
+mv mysql-5.7.32-linux-glibc2.12-x86_64 mysql
+</code></pre><pre><code>
+</code></pre></li>
+<li>
+<p>创建MySql用户和用户组</p>
+<pre><code>groupadd mysql
+useradd -g mysql mysql
+</code></pre><pre><code>
+</code></pre></li>
+<li>
+<p>新建data目录</p>
+<blockquote>
+<p>mkdir /usr/local/mysql/data</p>
+</blockquote>
+</li>
+<li>
+<p>修改MYSQL⽬录的归属⽤户</p>
+<blockquote>
+<p>chown -R mysql:mysql ./</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="准备mysql的配置件">准备MYSQL的配置⽂件</h2>
+<ul>
+<li>
+<p>在/etc ⽬录下新建 my.cnf ⽂件</p>
+</li>
+<li>
+<p>写入如下配置</p>
+<pre><code># 设置mysql客户端默认字符集
+default-character-set=utf8
+socket=/var/lib/mysql/mysql.sock
+[mysqld]
+skip-name-resolve
+#设置3306端⼝
+port = 3306
+socket=/var/lib/mysql/mysql.sock
+# 设置mysql的安装⽬录
+basedir=/usr/local/mysql
+# 设置mysql数据库的数据的存放⽬录
+datadir=/usr/local/mysql/data
+# 允许最⼤连接数
+max_connections=200
+# 服务端使⽤的字符集默认为8⽐特编码的latin1字符集
+character-set-server=utf8
+# 创建新表时将使⽤的默认存储引擎
+default-storage-engine=INNODB
+lower_case_table_names=1
+max_allowed_packet=16M
+</code></pre><pre><code>
+</code></pre></li>
+<li>
+<p>创建 /var/lib/mysql ⽬录，并修改权限</p>
+<pre><code>mkdir /var/lib/mysql
+chmod 777 /var/lib/mysql
+</code></pre><pre><code>
+</code></pre></li>
+</ul>
+<h2 id="正式开始安装mysql">正式开始安装MYSQL</h2>
+<ul>
+<li>
+<p>执⾏如下命令正式开始安装</p>
+<pre><code>cd /usr/local/mysql
+./bin/mysqld --initialize --user=mysql --basedir=/usr/local/mysql --datadir=/usr/local/mysql/data
+</code></pre><pre><code>
+ ps:注意最后一行出现的密码首次登录的时候要用（在root@localhost：的后面）
+
+
+</code></pre></li>
+</ul>
+<h2 id="复制启动脚本到资源录">复制启动脚本到资源⽬录</h2>
+<ul>
+<li>
+<p>复制命令</p>
+<pre><code>cd /usr/local/mysql/
+cp ./support-files/mysql.server /etc/init.d/mysqld
+</code></pre><pre><code>
+</code></pre></li>
+<li>
+<p>修改mysqld文件，修改其 basedir 和 datadir 为实际对应⽬录</p>
+<pre><code>basedir=/usr/local/mysql
+atadir=/usr/local/mysql/data
+</code></pre><pre><code>
+</code></pre></li>
+</ul>
+<h2 id="设置mysql系统服务并开启启">设置MYSQL系统服务并开启⾃启</h2>
+<ul>
+<li>
+<p>⾸先增加 mysqld 服务控制脚本执⾏权限</p>
+<blockquote>
+<p>chmod +x /etc/init.d/mysqld</p>
+</blockquote>
+</li>
+<li>
+<p>同时将 mysqld 服务加⼊到系统服务</p>
+<blockquote>
+<p>chkconfig &ndash;add mysqld</p>
+</blockquote>
+</li>
+<li>
+<p>最后检查 mysqld 服务是否已经⽣效即可</p>
+<blockquote>
+<p>chkconfig &ndash;list mysqld</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="启动mysqld">启动MYSQLD</h2>
+<ul>
+<li><code>service mysqld start</code></li>
+</ul>
+<h2 id="将-mysql-的-bin-录加-path-环境变量">将 MYSQL 的 BIN ⽬录加⼊ PATH 环境变量</h2>
+<ul>
+<li>
+<p>编辑 ~/.bash_profile ⽂件，在⽂件末尾处追加如下信息</p>
+<blockquote>
+<p>export PATH=$PATH:/usr/local/mysql/bin</p>
+</blockquote>
+</li>
+<li>
+<p>执行下列命令使环境变量生效</p>
+<blockquote>
+<p>source ~/.bash_profile</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="次登陆mysql">⾸次登陆MYSQL</h2>
+<ul>
+<li>
+<p>以 root 账户登录 mysql ，使⽤上⽂安装完成提示的密码进⾏登⼊（最好用复制的方式）</p>
+<blockquote>
+<p>mysql -u root -p</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="接下来修改root账户密码">接下来修改ROOT账户密码</h2>
+<ul>
+<li>
+<p>在mysql的命令⾏执⾏如下命令即可，密码可以换成你想⽤的密码即可</p>
+<blockquote>
+<p>mysql&gt;alter user user() identified by &ldquo;111111&rdquo;;
+mysql&gt;flush privileges;</p>
+</blockquote>
+</li>
+<li>
+<p>设置远程主机登录</p>
+<pre><code>mysql&gt; use mysql;
+mysql&gt; update user set user.Host='%' where user.User='root';
+mysql&gt; flush privileges;
+</code></pre><pre><code>
+</code></pre></li>
+</ul>
+<h2 id="其他关于远程登录问题">其他关于远程登录问题</h2>
+<ul>
+<li>
+<p>防火墙问题:CentOS 7 默认 firewalld 会禁止远程访问 MySql服务器</p>
+</li>
+<li>
+<p>关闭 firewalld</p>
+<pre><code>service firewalld stop
+systemctl disable firewalld.service #禁止firewall开机启动
+</code></pre><pre><code>
+</code></pre></li>
+<li>
+<p>安装 iptables 防火墙</p>
+<blockquote>
+<p>yum install iptables-services</p>
+</blockquote>
+</li>
+<li>
+<p>编辑 iptables 防火墙配置</p>
+<blockquote>
+<p>vim /etc/sysconfig/iptables</p>
+</blockquote>
+<pre><code>Firewall configuration written by system-config-firewall
+
+Manual customization of this file is not recommended.
+
+*filter
+
+:INPUT ACCEPT [0:0]
+
+:FORWARD ACCEPT [0:0]
+
+:OUTPUT ACCEPT [0:0]
+
+-A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+
+-A INPUT -p icmp -j ACCEPT
+
+-A INPUT -i lo -j ACCEPT
+
+-A INPUT -m state --state NEW -m tcp -p tcp --dport 22 -j ACCEPT
+
+-A INPUT -m state --state NEW -m tcp -p tcp --dport 80 -j ACCEPT
+
+-A INPUT -m state --state NEW -m tcp -p tcp --dport 3306 -j ACCEPT
+
+-A INPUT -j REJECT --reject-with icmp-host-prohibited
+
+-A FORWARD -j REJECT --reject-with icmp-host-prohibited
+
+COMMIT
+</code></pre><pre><code>
+</code></pre></li>
+<li>
+<p>开启 iptables 防火墙</p>
+<pre><code>service iptables start #开启
+systemctl enable iptables.service #设置防火墙开机启动
+</code></pre><pre><code></code></pre></li>
+</ul>
+</article>
+    </section>
+
+    <footer class="ui secondary attached segment dream-tags">
+      
+      <span>No Tag</span>
+      
+    </footer>
+
+    
+
+    
+
+  </div>
+  <div class="fifteen wide mobile fifteen wide tablet four wide computer column">
+
+    <section class="ui top attached center aligned inverted segment">
+  <div class="ui small circular image">
+    
+    <img src="/img/avatar-ex.svg">
+    
+  </div>
+  <h3 class="ui header">CodeV&#39;s blog<div class="sub header" style="color: white;"></div>
+  </h3>
+
+  <div class="ui inverted horizontal list">
+    
+    <a class="item" href="/post">
+      <i class="archive icon" title="Archives"></i>
+    </a>
+    
+    <a class="item" href="/tags">
+      <i class="tags icon" title="All Tags"></i>
+    </a>
+    <a class="item" href="/categories">
+      <i class="inverted cubes icon" title="All Categories"></i>
+    </a>
+  </div>
+
+  <a id="tag-category-pop" class="ui red right corner label">
+    <i class="pointing down icon" title="Click this to pop tags and categories"></i>
+  </a>
+</section>
+
+
+
+
+
+<section class="ui bottom attached center aligned inverted segment">
+    
+    <p>© 2021 我是CodeV</p>
+    
+    <p>Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> with theme <a href="https://github.com/g1eny0ung/hugo-theme-dream" target="_blank">Dream</a>.</p>
+</section>
+
+
+  </div>
+</div>
+
+      </section>
+      <section class="back">
+        <nav class="ui top secondary menu" style="overflow-x: auto">
+  <div class="item">
+    <i class="inverted big link bullseye icon dream-flip-toggle" title="Flip it!"></i>
+  </div>
+  
+  
+  <div class="item">
+    <a href="https://github.com/codewei758" target="_blank">
+      <i class="inverted big github icon" title="github"></i>
+    </a>
+  </div>
+  
+  
+  
+  
+</nav>
+
+<div class="ui centered grid about">
+  <div class="fifteen wide mobile fifteen wide tablet fifteen wide computer column">
+
+    <section class="ui stacked segments">
+      <header class="ui inverted segment">
+        <h2 class="ui header">
+          About
+        </h2>
+      </header>
+
+      <article class="ui inverted segment back-about">
+        <div class="ui stackable three column grid">
+          <div class="column">
+              
+          </div>
+          <div class="column">
+              
+          </div>
+          <div class="column">
+              
+          </div>
+        </div>
+      </article>
+
+      
+
+      
+      
+    </section>
+
+  </div>
+</div>
+
+      </section>
+    </div>
+  </div>
+
+  
+<script src="/js/jquery.min.js"></script>
+<script src="/js/semantic.min.js"></script>
+<script src="/js/html2canvas.min.js"></script>
+<script src="/js/bg.js"></script>
+<script src="/js/site.js"></script>
+
+
+
+</body>
+
+</html>
